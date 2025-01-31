@@ -84,6 +84,28 @@ const myChart = new Chart(ctx, {
                 display: true,
                 text: 'Overload Data'
             },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        const label = context.dataset.label || '';
+                        const xValue = context.parsed.x;
+                        const yValue = context.parsed.y;
+                        let xDisplay = xValue;
+                        if(xValue < .002) {
+                            xDisplay = xValue.toFixed(5);
+                        } else if (xValue < .01) {
+                            xDisplay = xValue.toFixed(3);
+                        } else if (xValue < .1) {
+                            xDisplay = xValue.toFixed(2);
+                        } else if (xValue < 1) {
+                            xDisplay = xValue.toFixed(1);
+                        } else if (xValue < 10) {
+                            xDisplay = xValue.toFixed(0);
+                        }
+                        return [label,`( ${xDisplay}, ${yValue.toFixed(1)} )`];
+                    }
+                }
+            },
             legend: {
                 display: true,
                 position: 'right',
@@ -98,30 +120,89 @@ const myChart = new Chart(ctx, {
     }
 });
 
-// Function to populate overload checkboxes
+// Function to populate overload checkboxes grouped by type
 function populateOverloadList(overloads) {
     const overloadList = document.getElementById('overloadList');
     overloadList.innerHTML = ''; // Clear existing checkboxes
     
-    overloads.forEach((overload, index) => {
-        const div = document.createElement('div');
-        div.className = 'form-check';
+    // Add reset button at the top
+    const resetDiv = document.createElement('div');
+    resetDiv.className = 'mb-3';
+    const resetButton = document.createElement('button');
+    resetButton.className = 'btn btn-sm btn-secondary';
+    resetButton.textContent = 'Reset Selection';
+    resetButton.onclick = () => selectAllOverloads(false);
+    resetDiv.appendChild(resetButton);
+    overloadList.appendChild(resetDiv);
+    
+    // Group overloads by type
+    const groupedOverloads = {};
+    overloads.forEach(overload => {
+        const type = overload.getProperties().type || 'Other';
+        if (!groupedOverloads[type]) {
+            groupedOverloads[type] = [];
+        }
+        groupedOverloads[type].push(overload);
+    });
+    
+    // Create groups for each type
+    Object.entries(groupedOverloads).forEach(([type, typeOverloads]) => {
+        // Create group container
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'overload-group mb-2';
         
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.id = `overload-${index}`;
-        checkbox.className = 'form-check-input overload-checkbox';
-        checkbox.checked = true; // Default to checked
-        checkbox.addEventListener('change', updateChartDisplay);
+        // Create group header
+        const headerDiv = document.createElement('div');
+        headerDiv.className = 'group-header d-flex align-items-center mb-1';
+        headerDiv.style.cursor = 'pointer';
         
-        const label = document.createElement('label');
-        label.className = 'form-check-label';
-        label.htmlFor = `overload-${index}`;
-        label.textContent = overload.getLabel();
+        // Add expand/collapse icon
+        const icon = document.createElement('span');
+        icon.className = 'me-2';
+        icon.innerHTML = '▼';
+        headerDiv.appendChild(icon);
         
-        div.appendChild(checkbox);
-        div.appendChild(label);
-        overloadList.appendChild(div);
+        // Add group title
+        const title = document.createElement('span');
+        title.className = 'fw-bold';
+        title.textContent = type;
+        headerDiv.appendChild(title);
+        
+        // Create group content
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'group-content ms-3';
+        
+        // Add click handler for expand/collapse
+        headerDiv.addEventListener('click', () => {
+            contentDiv.style.display = contentDiv.style.display === 'none' ? 'block' : 'none';
+            icon.innerHTML = contentDiv.style.display === 'none' ? '▶' : '▼';
+        });
+        
+        // Add overloads to group
+        typeOverloads.forEach((overload, index) => {
+            const div = document.createElement('div');
+            div.className = 'form-check';
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = `overload-${type}-${index}`;
+            checkbox.className = 'form-check-input overload-checkbox';
+            checkbox.checked = false; // Default to unchecked
+            checkbox.addEventListener('change', updateChartDisplay);
+            
+            const label = document.createElement('label');
+            label.className = 'form-check-label';
+            label.htmlFor = `overload-${type}-${index}`;
+            label.textContent = overload.getLabel();
+            
+            div.appendChild(checkbox);
+            div.appendChild(label);
+            contentDiv.appendChild(div);
+        });
+        
+        groupDiv.appendChild(headerDiv);
+        groupDiv.appendChild(contentDiv);
+        overloadList.appendChild(groupDiv);
     });
 }
 
