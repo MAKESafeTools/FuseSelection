@@ -37,7 +37,7 @@ const myChart = new Chart(ctx, {
         aspectRatio: 2,
         layout: {
             padding: {
-                right: 150  // Make room for legend
+                right: 250  // Increased padding for legend
             }
         },
         scales: {
@@ -188,6 +188,11 @@ function populateOverloadList(overloads) {
             checkbox.id = `overload-${type}-${index}`;
             checkbox.className = 'form-check-input overload-checkbox';
             checkbox.checked = false; // Default to unchecked
+            
+            // Store the actual index in allOverloads array as a data attribute
+            const overloadIndex = allOverloads.indexOf(overload);
+            checkbox.dataset.overloadIndex = overloadIndex;
+            
             checkbox.addEventListener('change', updateChartDisplay);
             
             const label = document.createElement('label');
@@ -224,25 +229,30 @@ function updateChartDisplay() {
     
     // Add datasets for checked overloads
     checkboxes.forEach((checkbox, index) => {
-        if (checkbox.checked && allOverloads[index]) {
-            const overload = allOverloads[index];
-            const data = overload.getSortedData();
-            const properties = overload.getProperties();
+        if (checkbox.checked) {
+            // Use the stored overloadIndex to get the correct overload
+            const overloadIndex = parseInt(checkbox.dataset.overloadIndex);
             
-            myChart.data.datasets.push({
-                label: overload.getLabel(),
-                data: data.map(point => ({
-                    x: point.time,
-                    y: point.current
-                })),
-                showLine: true,
-                borderColor: colorArray[index % colorArray.length],
-                backgroundColor: colorArray[index % colorArray.length],
-                pointRadius: 3,
-                borderWidth: 2,
-                borderDash: properties.type === 'fuse' ? [5, 5] : [], // Add dashed line for fuses
-                fill: false
-            });
+            if (allOverloads[overloadIndex]) {
+                const overload = allOverloads[overloadIndex];
+                const data = overload.getSortedData();
+                const properties = overload.getProperties();
+                
+                myChart.data.datasets.push({
+                    label: overload.getLabel(),
+                    data: data.map(point => ({
+                        x: point.time,
+                        y: point.current
+                    })),
+                    showLine: true,
+                    borderColor: colorArray[index % colorArray.length],
+                    backgroundColor: colorArray[index % colorArray.length],
+                    pointRadius: 3,
+                    borderWidth: 2,
+                    borderDash: properties.type === 'fuse' ? [5, 5] : [], // Add dashed line for fuses
+                    fill: false
+                });
+            }
         }
     });
     
