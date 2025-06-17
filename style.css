@@ -19,3 +19,7 @@
 .overload-group:last-child {
     border-bottom: none;
 }
+
+.start-collapsed {
+    display: none;
+}

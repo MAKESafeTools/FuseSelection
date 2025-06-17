@@ -12,15 +12,24 @@
 </head>
 <body>
 <div class="container">
-	<div class="mb-4">
+	<div id="page-header" class="mb-4">
     	<h1>MakeSafe Tools - Fuse & Overload Chart</h1>
   	</div>
-	
-	<div class="row">
-		<div class="col-md-3">
+	<div id="page-body" class="row">
+		<div id="sidebar" class="col-md-3">
 			<div class="card">
-				<div class="card-header">Overload Selection</div>
-				<div class="card-body">
+				<div id="sidebar-header" class="card-header">Overload Selection</div>
+				<div id="sidebar-body" class="card-body">
+					<div class="mb-3">
+						<button class="btn btn-sm btn-secondary" onclick="selectAllOverloads(false)">Reset Selection</button>
+					</div>
+					<div class="input-group input-group-sm">
+						<span>FLA: </span>
+						
+						<div class="form-check">
+							<label class="form-check-label" for="fla"><input type="text" class="form-control" id="fla" placeholder="FLA" style="min-width:50px" value="1" onchange="updateChartDisplay()"></label>
+						</div>
+					</div>
 					<div id="overloadList" class="form-group">
 						<!-- Overload checkboxes will be dynamically added here -->
 					</div>
@@ -30,7 +39,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-9">
+		<div id="content" class="col-md-9">
 			<div class="card">
 				<div class="card-header">Chart</div>
 				<div class="card-body">

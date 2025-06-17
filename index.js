@@ -121,45 +121,40 @@ const myChart = new Chart(ctx, {
 });
 
 // Function to populate overload checkboxes grouped by type
-function populateOverloadList(overloads) {
+function populateOverloadList(devices) {
     const overloadList = document.getElementById('overloadList');
     overloadList.innerHTML = ''; // Clear existing checkboxes
     
-    // Add reset button at the top
-    const resetDiv = document.createElement('div');
-    resetDiv.className = 'mb-3';
-    const resetButton = document.createElement('button');
-    resetButton.className = 'btn btn-sm btn-secondary';
-    resetButton.textContent = 'Reset Selection';
-    resetButton.onclick = () => selectAllOverloads(false);
-    resetDiv.appendChild(resetButton);
-    overloadList.appendChild(resetDiv);
-    
-    // Group overloads by type
-    const groupedOverloads = {};
-    overloads.forEach(overload => {
-        const type = overload.getProperties().type || 'Other';
-        if (!groupedOverloads[type]) {
-            groupedOverloads[type] = [];
+    // Group devices by type
+    const groupedDevices = {};
+    devices.forEach(device => {
+        const type = device.getProperties().type || 'Other';
+        if (!groupedDevices[type]) {
+            // if this type doesn't exist yet, intialize a spot for it
+            groupedDevices[type] = [];
         }
-        groupedOverloads[type].push(overload);
+        // otherwise just add it to the existing spot
+        groupedDevices[type].push(device);
     });
     
     // Create groups for each type
-    Object.entries(groupedOverloads).forEach(([type, typeOverloads]) => {
+    Object.entries(groupedDevices).forEach(([type, typeOverloads]) => {
+
         // Create group container
         const groupDiv = document.createElement('div');
         groupDiv.className = 'overload-group mb-2';
+        groupDiv.id = type + '-group';
         
         // Create group header
         const headerDiv = document.createElement('div');
         headerDiv.className = 'group-header d-flex align-items-center mb-1';
+        headerDiv.id = type + '-group-header';
         headerDiv.style.cursor = 'pointer';
         
         // Add expand/collapse icon
         const icon = document.createElement('span');
         icon.className = 'me-2';
-        icon.innerHTML = '▼';
+        icon.innerHTML = '▶';
         headerDiv.appendChild(icon);
         
         // Add group title
@@ -170,7 +165,7 @@ function populateOverloadList(overloads) {
         
         // Create group content
         const contentDiv = document.createElement('div');
-        contentDiv.className = 'group-content ms-3';
+        contentDiv.className = 'start-collapsed group-content ms-3';
         
         // Add click handler for expand/collapse
         headerDiv.addEventListener('click', () => {
@@ -188,6 +183,7 @@ function populateOverloadList(overloads) {
             checkbox.id = `overload-${type}-${index}`;
             checkbox.className = 'form-check-input overload-checkbox';
             checkbox.checked = false; // Default to unchecked
+            if(type.includes('FLA')) checkbox.checked = true;
             
             // Store the actual index in allOverloads array as a data attribute
             const overloadIndex = allOverloads.indexOf(overload);
@@ -235,9 +231,16 @@ function updateChartDisplay() {
             
             if (allOverloads[overloadIndex]) {
                 const overload = allOverloads[overloadIndex];
-                const data = overload.getSortedData();
+                var data = overload.getSortedData();
                 const properties = overload.getProperties();
-                
+                const label = overload.getLabel();
+                if(label.includes('FLA')) {
+                    const fla_raw = document.getElementById('fla').value;
+                    data.forEach((dataPoint) => {
+                        dataPoint.current = dataPoint.current * fla_raw;
+                    });
+                }
+                var is_FLA = label.includes("FLA");
                 myChart.data.datasets.push({
                     label: overload.getLabel(),
                     data: data.map(point => ({
@@ -245,12 +248,13 @@ function updateChartDisplay() {
                         y: point.current
                     })),
                     showLine: true,
-                    borderColor: colorArray[index % colorArray.length],
+                    borderColor: is_FLA ? 'grey' : colorArray[index % colorArray.length],
                     backgroundColor: colorArray[index % colorArray.length],
-                    pointRadius: 3,
+                    pointRadius: is_FLA ? 1 : 3,
                     borderWidth: 2,
                     borderDash: properties.type === 'fuse' ? [5, 5] : [], // Add dashed line for fuses
                     fill: false
+
                 });
             }
         }
@@ -316,6 +320,7 @@ document.getElementById('yMin').addEventListener('blur', updateAxisRanges);
 document.getElementById('yMax').addEventListener('blur', updateAxisRanges);
 
 // Modified load and display function to handle checkboxes
+
 async function loadAndDisplayOverloadData() {
     try {
         allOverloads = await Overload.loadFromUrl('https://docs.google.com/spreadsheets/d/1FFMfCSl5xtW77oJwEzK4CP14w0rE70TyHUfODs9U6ic/pub?gid=118551&single=true&output=csv');
