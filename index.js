@@ -234,24 +234,26 @@ function updateChartDisplay() {
                 var data = overload.getSortedData();
                 const properties = overload.getProperties();
                 const label = overload.getLabel();
-                if(label.includes('FLA')) {
-                    const fla_raw = document.getElementById('fla').value;
-                    data.forEach((dataPoint) => {
-                        dataPoint.current = dataPoint.current * fla_raw;
-                    });
-                }
+                const fla_raw = document.getElementById('fla').value;
+                // var fla_data = data;
+                // if(label.includes('FLA')) {
+                //     const fla_raw = document.getElementById('fla').value;
+                //     fla_data.forEach((dataPoint) => {
+                //         dataPoint.current = dataPoint.current * fla_raw;
+                //     });
+                // }
                 var is_FLA = label.includes("FLA");
                 myChart.data.datasets.push({
                     label: overload.getLabel(),
                     data: data.map(point => ({
                         x: point.time,
-                        y: point.current
+                        y: is_FLA ? point.current * fla_raw: point.current
                     })),
                     showLine: true,
                     borderColor: is_FLA ? 'grey' : colorArray[index % colorArray.length],
                     backgroundColor: colorArray[index % colorArray.length],
                     pointRadius: is_FLA ? 1 : 3,
-                    borderWidth: 2,
+                    borderWidth: is_FLA ? 2 : 3,
                     borderDash: properties.type === 'fuse' ? [5, 5] : [], // Add dashed line for fuses
                     fill: false
 
