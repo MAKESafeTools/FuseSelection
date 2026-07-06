@@ -33,8 +33,10 @@ function isFlaDevice(overload) {
     return /fla/i.test(overload.getProperties().type);
 }
 
-function isSsrDevice(overload) {
-    return /ssr/i.test(overload.getProperties().type);
+// Protective devices the engineer chooses between; everything else (SSRs, SCRs,
+// diodes, bridge rectifiers, ...) is a component being protected
+function isCandidateDevice(overload) {
+    return /fuse|breaker/i.test(overload.getProperties().type);
 }
 
 // Read and validate the motor FLA input; flags the field and falls back to 1 when invalid
@@ -175,98 +177,107 @@ function byRating(a, b) {
     return (isNaN(ra) ? Infinity : ra) - (isNaN(rb) ? Infinity : rb);
 }
 
-// Populate the three study sections: FLA references, protected SSRs, candidate groups
+// Group devices by type, each group sorted by rating
+function groupByType(devices) {
+    const grouped = {};
+    devices.forEach(device => {
+        const type = device.getProperties().type || 'Other';
+        if (!grouped[type]) {
+            grouped[type] = [];
+        }
+        grouped[type].push(device);
+    });
+    return Object.entries(grouped).map(([type, list]) => [type, list.sort(byRating)]);
+}
+
+// Build a collapsible device group with count badge and all/none controls
+function createDeviceGroup(type, typeOverloads, { checked, expanded }) {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'overload-group mb-2';
+
+    const headerDiv = document.createElement('div');
+    headerDiv.className = 'group-header d-flex align-items-center mb-1';
+
+    // Expand/collapse control is a real button so it works from the keyboard
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'group-toggle d-flex align-items-center flex-grow-1';
+    toggle.setAttribute('aria-expanded', String(expanded));
+
+    const icon = document.createElement('span');
+    icon.className = 'me-2';
+    icon.innerHTML = expanded ? '▼' : '▶';
+    toggle.appendChild(icon);
+
+    const title = document.createElement('span');
+    title.className = 'fw-bold';
+    title.textContent = type;
+    toggle.appendChild(title);
+
+    const count = document.createElement('span');
+    count.className = 'ms-1 text-muted';
+    count.textContent = `(${typeOverloads.length})`;
+    toggle.appendChild(count);
+
+    headerDiv.appendChild(toggle);
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = expanded ? 'group-content ms-3' : 'collapsed group-content ms-3';
+
+    toggle.addEventListener('click', () => {
+        const collapsed = contentDiv.classList.toggle('collapsed');
+        toggle.setAttribute('aria-expanded', String(!collapsed));
+        icon.innerHTML = collapsed ? '▶' : '▼';
+    });
+
+    // Per-group all/none; selecting all expands the group so the result is visible
+    const setGroup = (groupChecked) => {
+        contentDiv.querySelectorAll('.overload-checkbox').forEach(cb => { cb.checked = groupChecked; });
+        if (groupChecked && contentDiv.classList.contains('collapsed')) {
+            toggle.click();
+        }
+        updateChartDisplay();
+    };
+    ['all', 'none'].forEach(word => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'group-select ms-2';
+        btn.textContent = word;
+        btn.addEventListener('click', () => setGroup(word === 'all'));
+        headerDiv.appendChild(btn);
+    });
+
+    typeOverloads.forEach(overload => contentDiv.appendChild(createDeviceRow(overload, checked)));
+
+    groupDiv.appendChild(headerDiv);
+    groupDiv.appendChild(contentDiv);
+    return groupDiv;
+}
+
+// Populate the three study sections: FLA references, protected components, candidate groups
 function populateOverloadList(devices) {
     const flaList = document.getElementById('flaList');
-    const ssrList = document.getElementById('ssrList');
+    const protectedList = document.getElementById('protectedList');
     const overloadList = document.getElementById('overloadList');
     flaList.innerHTML = '';
-    ssrList.innerHTML = '';
+    protectedList.innerHTML = '';
     overloadList.innerHTML = '';
 
     const flaDevices = devices.filter(isFlaDevice);
-    const ssrDevices = devices.filter(d => !isFlaDevice(d) && isSsrDevice(d));
-    const candidates = devices.filter(d => !isFlaDevice(d) && !isSsrDevice(d));
+    const candidates = devices.filter(d => !isFlaDevice(d) && isCandidateDevice(d));
+    const protectedDevices = devices.filter(d => !isFlaDevice(d) && !isCandidateDevice(d));
 
-    // References and the protected device are always visible and start checked
+    // FLA references are always visible and start checked
     flaDevices.forEach(d => flaList.appendChild(createDeviceRow(d, true)));
-    ssrDevices.slice().sort(byRating).forEach(d => ssrList.appendChild(createDeviceRow(d, true)));
 
-    // Group candidates by type
-    const groupedDevices = {};
-    candidates.forEach(device => {
-        const type = device.getProperties().type || 'Other';
-        if (!groupedDevices[type]) {
-            groupedDevices[type] = [];
-        }
-        groupedDevices[type].push(device);
-    });
+    // Protected components start checked and expanded — every candidate curve
+    // must stay below these withstand curves
+    groupByType(protectedDevices).forEach(([type, typeOverloads]) =>
+        protectedList.appendChild(createDeviceGroup(type, typeOverloads, { checked: true, expanded: true })));
 
-    // Create a collapsible group for each candidate type
-    Object.entries(groupedDevices).forEach(([type, typeOverloads]) => {
-        typeOverloads.sort(byRating);
-
-        const groupDiv = document.createElement('div');
-        groupDiv.className = 'overload-group mb-2';
-
-        const headerDiv = document.createElement('div');
-        headerDiv.className = 'group-header d-flex align-items-center mb-1';
-
-        // Expand/collapse control is a real button so it works from the keyboard
-        const toggle = document.createElement('button');
-        toggle.type = 'button';
-        toggle.className = 'group-toggle d-flex align-items-center flex-grow-1';
-        toggle.setAttribute('aria-expanded', 'false');
-
-        const icon = document.createElement('span');
-        icon.className = 'me-2';
-        icon.innerHTML = '▶';
-        toggle.appendChild(icon);
-
-        const title = document.createElement('span');
-        title.className = 'fw-bold';
-        title.textContent = type;
-        toggle.appendChild(title);
-
-        const count = document.createElement('span');
-        count.className = 'ms-1 text-muted';
-        count.textContent = `(${typeOverloads.length})`;
-        toggle.appendChild(count);
-
-        headerDiv.appendChild(toggle);
-
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'collapsed group-content ms-3';
-
-        toggle.addEventListener('click', () => {
-            const collapsed = contentDiv.classList.toggle('collapsed');
-            toggle.setAttribute('aria-expanded', String(!collapsed));
-            icon.innerHTML = collapsed ? '▶' : '▼';
-        });
-
-        // Per-group all/none; selecting all expands the group so the result is visible
-        const setGroup = (checked) => {
-            contentDiv.querySelectorAll('.overload-checkbox').forEach(cb => { cb.checked = checked; });
-            if (checked && contentDiv.classList.contains('collapsed')) {
-                toggle.click();
-            }
-            updateChartDisplay();
-        };
-        ['all', 'none'].forEach(word => {
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'group-select ms-2';
-            btn.textContent = word;
-            btn.addEventListener('click', () => setGroup(word === 'all'));
-            headerDiv.appendChild(btn);
-        });
-
-        typeOverloads.forEach(overload => contentDiv.appendChild(createDeviceRow(overload, false)));
-
-        groupDiv.appendChild(headerDiv);
-        groupDiv.appendChild(contentDiv);
-        overloadList.appendChild(groupDiv);
-    });
+    // Candidates start unchecked and collapsed
+    groupByType(candidates).forEach(([type, typeOverloads]) =>
+        overloadList.appendChild(createDeviceGroup(type, typeOverloads, { checked: false, expanded: false })));
 
     paintSwatches();
 }
@@ -281,11 +292,11 @@ function paintSwatches() {
     });
 }
 
-// Restore the default study: references + protected device on, candidates cleared
+// Restore the default study: references + protected devices on, candidates cleared
 function resetStudy() {
     document.querySelectorAll('.overload-checkbox').forEach(checkbox => {
         const overload = allOverloads[parseInt(checkbox.dataset.overloadIndex)];
-        checkbox.checked = !!overload && (isFlaDevice(overload) || isSsrDevice(overload));
+        checkbox.checked = !!overload && !isCandidateDevice(overload);
     });
     updateChartDisplay();
 }
@@ -301,6 +312,9 @@ function updateChartDisplay() {
     // Get all checkboxes
     const checkboxes = document.querySelectorAll('.overload-checkbox');
 
+    // Track FLA datasets so the inrush region between them can be shaded
+    const flaDatasetIndices = [];
+
     // Add datasets for checked overloads
     checkboxes.forEach((checkbox, index) => {
         if (checkbox.checked) {
@@ -313,6 +327,7 @@ function updateChartDisplay() {
                 const properties = overload.getProperties();
                 const is_FLA = isFlaDevice(overload);
                 const color = is_FLA ? 'grey' : colorArray[index % colorArray.length];
+                if (is_FLA) flaDatasetIndices.push(myChart.data.datasets.length);
                 myChart.data.datasets.push({
                     label: overload.getLabel(),
                     data: data.map(point => ({
@@ -331,6 +346,15 @@ function updateChartDisplay() {
             }
         }
     });
+
+    // Shade the motor inrush region between the lowest and highest FLA curves
+    if (flaDatasetIndices.length >= 2) {
+        const level = i => Math.max(...myChart.data.datasets[i].data.map(p => p.y), 0);
+        const sorted = flaDatasetIndices.slice().sort((a, b) => level(a) - level(b));
+        const highest = sorted[sorted.length - 1];
+        myChart.data.datasets[highest].fill = sorted[0];
+        myChart.data.datasets[highest].backgroundColor = 'rgba(128, 128, 128, 0.15)';
+    }
 
     myChart.update();
     updateAxisRanges();
