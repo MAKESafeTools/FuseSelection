@@ -28,9 +28,20 @@ const colorArray = [
 // Store overloads globally
 let allOverloads = [];
 
-// Device roles are declared by the CSV 'type' column
+// Device roles are declared by the CSV 'type' column.
+// Any type containing 'FLA' scales with the motor FLA input; the type that is
+// EXACTLY 'FLA' is the grey motor reference band, other FLA types are per-unit
+// profiles (trip classes, letter curves, NEMA LRA codes).
 function isFlaDevice(overload) {
     return /fla/i.test(overload.getProperties().type);
+}
+
+function isFlaReference(overload) {
+    return overload.getProperties().type.trim().toLowerCase() === 'fla';
+}
+
+function isNemaCode(overload) {
+    return /code/i.test(overload.getProperties().type);
 }
 
 // Protective devices the engineer chooses between; everything else (SSRs, SCRs,
@@ -167,6 +178,18 @@ function createDeviceRow(overload, checked) {
     label.appendChild(swatch);
     label.appendChild(document.createTextNode(overload.getLabel()));
 
+    // Surface the curve's source/assumption notes as a hover tooltip
+    const annotations = overload.getAnnotations();
+    if (annotations.length) {
+        const info = document.createElement('span');
+        info.className = 'note-icon';
+        info.textContent = 'ⓘ';
+        info.title = 'Per-unit — scales with Motor FLA. Standard-derived estimate; '
+            + 'verify against manufacturer data before final selection.\n\n• '
+            + annotations.join('\n• ');
+        label.appendChild(info);
+    }
+
     div.appendChild(checkbox);
     div.appendChild(label);
     return div;
@@ -269,8 +292,20 @@ function populateOverloadList(devices) {
     const candidates = devices.filter(d => !isFlaDevice(d) && isCandidateDevice(d));
     const protectedDevices = devices.filter(d => !isFlaDevice(d) && !isCandidateDevice(d));
 
-    // FLA references are always visible and start checked
-    flaDevices.forEach(d => flaList.appendChild(createDeviceRow(d, true)));
+    // FLA references are always visible and start checked; per-unit profiles
+    // live in collapsed groups and start unchecked
+    const references = flaDevices.filter(isFlaReference);
+    const profiles = flaDevices.filter(d => !isFlaReference(d));
+    const nemaCodes = profiles.filter(isNemaCode);
+    const tripProfiles = profiles.filter(d => !isNemaCode(d));
+
+    references.forEach(d => flaList.appendChild(createDeviceRow(d, true)));
+    if (tripProfiles.length) {
+        flaList.appendChild(createDeviceGroup('Trip Profiles', tripProfiles, { checked: false, expanded: false }));
+    }
+    if (nemaCodes.length) {
+        flaList.appendChild(createDeviceGroup('NEMA LRA Codes', nemaCodes, { checked: false, expanded: false }));
+    }
 
     // Protected components start unchecked but visible/expanded — one click away
     groupByType(protectedDevices).forEach(([type, typeOverloads]) =>
@@ -289,7 +324,7 @@ function paintSwatches() {
         const overload = allOverloads[parseInt(checkbox.dataset.overloadIndex)];
         const swatch = checkbox.parentElement.querySelector('.color-swatch');
         if (!swatch || !overload) return;
-        swatch.style.backgroundColor = isFlaDevice(overload) ? 'grey' : colorArray[index % colorArray.length];
+        swatch.style.backgroundColor = isFlaReference(overload) ? 'grey' : colorArray[index % colorArray.length];
     });
 }
 
@@ -297,7 +332,7 @@ function paintSwatches() {
 function resetStudy() {
     document.querySelectorAll('.overload-checkbox').forEach(checkbox => {
         const overload = allOverloads[parseInt(checkbox.dataset.overloadIndex)];
-        checkbox.checked = !!overload && isFlaDevice(overload);
+        checkbox.checked = !!overload && isFlaReference(overload);
     });
     updateChartDisplay();
 }
@@ -325,37 +360,39 @@ function updateChartDisplay() {
             if (allOverloads[overloadIndex]) {
                 const overload = allOverloads[overloadIndex];
                 const properties = overload.getProperties();
-                const is_FLA = isFlaDevice(overload);
-                const color = is_FLA ? 'grey' : colorArray[index % colorArray.length];
+                const is_scaled = isFlaDevice(overload);   // multiply currents by motor FLA
+                const is_ref = isFlaReference(overload);   // grey motor reference styling
+                const color = is_ref ? 'grey' : colorArray[index % colorArray.length];
 
                 const makeDataset = (points, overrides) => Object.assign({
                     label: overload.getLabel(),
                     data: points.map(point => ({
                         x: point.time,
-                        y: is_FLA ? point.current * fla : point.current
+                        y: is_scaled ? point.current * fla : point.current
                     })),
                     showLine: true,
                     borderColor: color,
                     backgroundColor: color,
-                    pointRadius: is_FLA ? 1 : 3,
-                    borderWidth: is_FLA ? 2 : 3,
+                    pointRadius: is_ref ? 1 : 3,
+                    borderWidth: is_ref ? 2 : 3,
                     borderDash: /fuse/i.test(properties.type) ? [5, 5] : [], // Add dashed line for fuses
                     fill: false
                 }, overrides);
 
                 if (overload.hasBand()) {
                     // One filled envelope per banded device: min edge (hidden from
-                    // legend), max edge fills down to it
+                    // legend), max edge fills down to it. Edges plot in authored
+                    // order — TCC edges contain vertical/constant-current segments.
                     const minIndex = myChart.data.datasets.length;
-                    myChart.data.datasets.push(makeDataset(overload.getSortedData('min'), {
+                    myChart.data.datasets.push(makeDataset(overload.getBandData('min'), {
                         skipLegend: true
                     }));
-                    myChart.data.datasets.push(makeDataset(overload.getSortedData('max'), {
+                    myChart.data.datasets.push(makeDataset(overload.getBandData('max'), {
                         fill: minIndex,
-                        backgroundColor: is_FLA ? 'rgba(128, 128, 128, 0.15)' : color.replace('0.6', '0.15')
+                        backgroundColor: is_ref ? 'rgba(128, 128, 128, 0.15)' : color.replace('0.6', '0.15')
                     }));
                 } else {
-                    if (is_FLA) flaDatasetIndices.push(myChart.data.datasets.length);
+                    if (is_ref) flaDatasetIndices.push(myChart.data.datasets.length);
                     myChart.data.datasets.push(makeDataset(overload.getSortedData()));
                 }
             }
@@ -437,7 +474,18 @@ document.getElementById('yMax').addEventListener('blur', updateAxisRanges);
 
 async function loadAndDisplayOverloadData() {
     try {
-        allOverloads = await Overload.loadFromUrl('https://docs.google.com/spreadsheets/d/1FFMfCSl5xtW77oJwEzK4CP14w0rE70TyHUfODs9U6ic/pub?gid=118551&single=true&output=csv');
+        // Optional repo-hosted profile libraries load alongside the sheet;
+        // a failed profile fetch must not take down the sheet data
+        const optional = url => Overload.loadFromUrl(url).catch(error => {
+            console.error(`Error loading ${url}:`, error);
+            return [];
+        });
+        const [sheetDevices, tripProfiles, nemaCodes] = await Promise.all([
+            Overload.loadFromUrl('https://docs.google.com/spreadsheets/d/1FFMfCSl5xtW77oJwEzK4CP14w0rE70TyHUfODs9U6ic/pub?gid=118551&single=true&output=csv'),
+            optional('profiles/trip_profiles.csv?v=2026-07-06b'),
+            optional('profiles/nema_lra_codes.csv?v=2026-07-06b')
+        ]);
+        allOverloads = [...sheetDevices, ...tripProfiles, ...nemaCodes];
         populateOverloadList(allOverloads);
         updateChartDisplay();
         updateAxisTypes();

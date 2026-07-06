@@ -54,6 +54,13 @@
     cursor: pointer;
 }
 
+.note-icon {
+    margin-left: .3rem;
+    color: #6c757d;
+    cursor: help;
+    font-size: .85em;
+}
+
 .color-swatch {
     display: inline-block;
     width: 12px;

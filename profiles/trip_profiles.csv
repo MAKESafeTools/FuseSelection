@@ -1,0 +1,578 @@
+type,mfg,mpn,time (s),current (a),band,source,notes
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,10000,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,8485.3,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,7200,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,2801.8,1.114,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,1090.3,1.183,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,424.26,1.255,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,165.1,1.332,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,64.245,1.413,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,25,1.5,min,"ASSUMED - 25 s min at 1.5x, not standard-defined",FLAGGED - not an IEC limit
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,18.747,1.825,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,14.059,2.22,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,10.542,2.701,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,7.9057,3.286,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,5.9284,3.998,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,4.4457,4.864,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,3.3338,5.918,min,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,2.5,7.2,min,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - min 2.5 s at 7.2x",
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,1.7184,9.295,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,1.1811,12,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,0.811819,15.49,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,0.557998,20,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,10000,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,8485.3,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,7200,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,3241.9,1.245,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,1459.7,1.293,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,657.27,1.342,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,295.95,1.392,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,133.25,1.445,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,60,1.5,max,"ASSUMED - 60 s at 1.5x, not standard-defined for this class",FLAGGED - not an IEC limit
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,43.98,1.825,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,32.237,2.22,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,23.63,2.701,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,17.321,3.286,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,12.696,3.998,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,9.306,4.864,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,6.8213,5.918,max,log-log interpolation between anchors,
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,5,7.2,max,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - max 5 s at 7.2x",
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,3.3362,9.295,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,2.226,12,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,1.4853,15.49,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 5,IEC 60947-4-1,Class 5 Thermal,0.99104,20,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,10000,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,8485.3,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,7200,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,3030.1,1.114,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,1275.2,1.183,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,536.66,1.255,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,225.85,1.332,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,95.047,1.413,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,40,1.5,min,"ASSUMED - 40 s min at 1.5x, not standard-defined",FLAGGED - not an IEC limit
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,27.506,1.825,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,18.915,2.22,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,13.007,2.701,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,8.9443,3.286,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,6.1506,3.998,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,4.2295,4.864,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,2.9084,5.918,min,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,2,7.2,min,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - min 2 s at 7.2x",
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,1.228,9.295,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,0.753954,12,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,0.462916,15.49,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,0.284223,20,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,10000,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,8485.3,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,7200,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,3638.9,1.245,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,1839.1,1.293,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,929.52,1.342,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,469.78,1.392,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,237.43,1.445,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,120,1.5,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.5x trip within 120 s (hot),
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,87.96,1.825,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,64.474,2.22,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,47.259,2.701,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,34.641,3.286,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,25.392,3.998,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,18.612,4.864,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,13.643,5.918,max,log-log interpolation between anchors,
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,10,7.2,max,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - max 10 s at 7.2x",
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,6.6724,9.295,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,4.4521,12,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,2.9706,15.49,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10A,IEC 60947-4-1,Class 10A Thermal,1.9821,20,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,10000,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,8485.3,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,7200,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,3241.9,1.114,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,1459.7,1.183,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,657.27,1.255,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,295.95,1.332,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,133.25,1.413,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,60,1.5,min,"ASSUMED - 60 s min at 1.5x, not standard-defined",FLAGGED - not an IEC limit
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,42.77,1.825,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,30.488,2.22,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,21.733,2.701,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,15.492,3.286,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,11.043,3.998,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,7.872,4.864,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,5.6114,5.918,min,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,4,7.2,min,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - min 4 s at 7.2x",
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,2.5737,9.295,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,1.656,12,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,1.0655,15.49,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,0.685588,20,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,10000,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,8485.3,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,7200,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,4084.6,1.245,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,2317.2,1.293,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,1314.5,1.342,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,745.74,1.392,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,423.06,1.445,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,240,1.5,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.5x trip within 240 s (hot),
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,161.32,1.825,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,108.43,2.22,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,72.884,2.701,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,48.99,3.286,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,32.929,3.998,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,22.134,4.864,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,14.877,5.918,max,log-log interpolation between anchors,
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,10,7.2,max,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - max 10 s at 7.2x",
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,5.9603,9.295,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,3.5525,12,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,2.1174,15.49,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10,IEC 60947-4-1,Class 10 Thermal,1.262,20,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,10000,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,8485.3,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,7200,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,3468.6,1.114,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,1671,1.183,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,804.98,1.255,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,387.8,1.332,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,186.82,1.413,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,90,1.5,min,"ASSUMED - 90 s min at 1.5x, not standard-defined",FLAGGED - not an IEC limit
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,64.155,1.825,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,45.732,2.22,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,32.599,2.701,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,23.238,3.286,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,16.565,3.998,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,11.808,4.864,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,8.4171,5.918,min,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,6,7.2,min,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - min 6 s at 7.2x",
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,3.8606,9.295,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,2.484,12,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,1.5983,15.49,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,1.0284,20,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,10000,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,8485.3,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,7200,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,4584.8,1.245,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,2919.5,1.293,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,1859,1.342,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,1183.8,1.392,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,753.8,1.445,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,480,1.5,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.5x trip within 480 s (hot),
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,322.64,1.825,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,216.86,2.22,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,145.77,2.701,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,97.98,3.286,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,65.858,3.998,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,44.267,4.864,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,29.755,5.918,max,log-log interpolation between anchors,
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,20,7.2,max,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - max 20 s at 7.2x",
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,11.921,9.295,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,7.1049,12,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,4.2347,15.49,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20,IEC 60947-4-1,Class 20 Thermal,2.524,20,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,10000,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,8485.3,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,7200,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,3776.8,1.114,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,1981.2,1.183,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,1039.2,1.255,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,545.14,1.332,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,285.96,1.413,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,150,1.5,min,"ASSUMED - 150 s min at 1.5x, not standard-defined",FLAGGED - not an IEC limit
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,105.53,1.825,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,74.238,2.22,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,52.227,2.701,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,36.742,3.286,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,25.849,3.998,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,18.185,4.864,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,12.793,5.918,min,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,9,7.2,min,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - min 9 s at 7.2x",
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,5.6924,9.295,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,3.6003,12,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,2.2772,15.49,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,1.4403,20,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,10000,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,8485.3,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,7200,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,4905.3,1.245,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,3341.9,1.293,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,2276.8,1.342,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,1551.2,1.392,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,1056.8,1.445,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,720,1.5,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.5x trip within 720 s (hot),
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,483.96,1.825,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,325.3,2.22,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,218.65,2.701,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,146.97,3.286,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,98.787,3.998,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,66.401,4.864,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,44.632,5.918,max,log-log interpolation between anchors,
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,30,7.2,max,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - max 30 s at 7.2x",
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,17.881,9.295,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,10.657,12,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,6.3521,15.49,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30,IEC 60947-4-1,Class 30 Thermal,3.786,20,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,10000,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,8485.3,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,7200,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,3241.9,1.114,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,1459.7,1.183,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,657.27,1.255,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,295.95,1.332,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,133.25,1.413,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,60,1.5,min,"ASSUMED - 60 s min at 1.5x, not standard-defined",FLAGGED - not an IEC limit
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,43.98,1.825,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,32.237,2.22,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,23.63,2.701,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,17.321,3.286,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,12.696,3.998,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,9.306,4.864,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,6.8213,5.918,min,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,5,7.2,min,ASSUMED - 5 s = 50% of class at 7.2x,FLAGGED - E-class 50% lower bound could not be verified from public sources
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,3.3362,9.295,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,2.226,12,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,1.4853,15.49,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,0.99104,20,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,10000,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,8485.3,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,7200,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,4084.6,1.245,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,2317.2,1.293,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,1314.5,1.342,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,745.74,1.392,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,423.06,1.445,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,240,1.5,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.5x trip within 240 s (hot),
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,161.32,1.825,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,108.43,2.22,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,72.884,2.701,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,48.99,3.286,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,32.929,3.998,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,22.134,4.864,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,14.877,5.918,max,log-log interpolation between anchors,
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,10,7.2,max,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - max 10 s at 7.2x",
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,5.9603,9.295,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,3.5525,12,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,2.1174,15.49,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 10E,IEC 60947-4-1,Class 10E Thermal,1.262,20,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,10000,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,8485.3,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,7200,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,3468.6,1.114,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,1671,1.183,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,804.98,1.255,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,387.8,1.332,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,186.82,1.413,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,90,1.5,min,"ASSUMED - 90 s min at 1.5x, not standard-defined",FLAGGED - not an IEC limit
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,68.385,1.825,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,51.962,2.22,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,39.482,2.701,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,30,3.286,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,22.795,3.998,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,17.321,4.864,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,13.161,5.918,min,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,10,7.2,min,ASSUMED - 10 s = 50% of class at 7.2x,FLAGGED - E-class 50% lower bound could not be verified from public sources
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,6.9924,9.295,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,4.8893,12,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,3.4188,15.49,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,2.3905,20,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,10000,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,8485.3,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,7200,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,4584.8,1.245,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,2919.5,1.293,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,1859,1.342,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,1183.8,1.392,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,753.8,1.445,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,480,1.5,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.5x trip within 480 s (hot),
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,322.64,1.825,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,216.86,2.22,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,145.77,2.701,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,97.98,3.286,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,65.858,3.998,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,44.267,4.864,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,29.755,5.918,max,log-log interpolation between anchors,
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,20,7.2,max,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - max 20 s at 7.2x",
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,11.921,9.295,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,7.1049,12,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,4.2347,15.49,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20E,IEC 60947-4-1,Class 20E Thermal,2.524,20,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,10000,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,8485.3,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,7200,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,3776.8,1.114,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,1981.2,1.183,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,1039.2,1.255,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,545.14,1.332,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,285.96,1.413,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,150,1.5,min,"ASSUMED - 150 s min at 1.5x, not standard-defined",FLAGGED - not an IEC limit
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,112.48,1.825,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,84.351,2.22,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,63.254,2.701,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,47.434,3.286,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,35.571,3.998,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,26.674,4.864,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,20.003,5.918,min,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,15,7.2,min,ASSUMED - 15 s = 50% of class at 7.2x,FLAGGED - E-class 50% lower bound could not be verified from public sources
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,10.31,9.295,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,7.0866,12,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,4.8709,15.49,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,3.348,20,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,10000,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,8485.3,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,7200,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,4905.3,1.245,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,3341.9,1.293,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,2276.8,1.342,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,1551.2,1.392,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,1056.8,1.445,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,720,1.5,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.5x trip within 720 s (hot),
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,483.96,1.825,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,325.3,2.22,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,218.65,2.701,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,146.97,3.286,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,98.787,3.998,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,66.401,4.864,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,44.632,5.918,max,log-log interpolation between anchors,
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,30,7.2,max,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - max 30 s at 7.2x",
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,17.881,9.295,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,10.657,12,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,6.3521,15.49,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 30E,IEC 60947-4-1,Class 30E Thermal,3.786,20,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),10000,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),6000,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),3600,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),1293.5,1.251,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),464.76,1.385,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),166.99,1.533,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),60,1.697,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),21.558,1.879,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),7.746,2.081,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),2.7832,2.303,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),1,2.55,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 2.55x min 1 s","per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.880879,2.692,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.777645,2.842,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.687812,3,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.12369,3,min,IEC 60898-1 instantaneous letter definition - lower pickup 3x,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.0222432,3,min,IEC 60898-1 instantaneous letter definition - lower pickup 3x,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.004,3,min,"ASSUMED - 0.004 s min clearing (typical), not standard-defined",FLAGGED - not a standard limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.004,5,min,ASSUMED - 0.004 s min clearing,FLAGGED - not a standard limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.004,25,min,ASSUMED - 0.004 s min clearing,FLAGGED - not a standard limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),10000,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),6000,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),3600,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),2157.9,1.556,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),1293.5,1.67,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),775.35,1.792,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),464.76,1.923,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),278.59,2.063,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),166.99,2.214,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),100.1,2.376,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),60,2.55,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 2.55x max 60 s","per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),40.733,3.018,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),28.098,3.571,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),19.589,4.225,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),13.756,5,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),2.6648,5,max,IEC 60898-1 instantaneous letter definition - upper pickup 5x; must trip <0.1 s above it (60898-1),"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.516218,5,max,IEC 60898-1 instantaneous letter definition - upper pickup 5x; must trip <0.1 s above it (60898-1),"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.1,5,max,IEC 60898-1 instantaneous letter definition - upper pickup 5x; must trip <0.1 s above it (60898-1),"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.1,6.5,max,IEC 60898-1 - trip <0.1 s above upper instantaneous limit,"per-unit of breaker In, NOT motor FLA"
+FLA - B Curve,IEC 60898-1,B Curve (3-5x In),0.1,25,max,IEC 60898-1 - trip <0.1 s above upper instantaneous limit,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),10000,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),6000,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),3600,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),1293.5,1.251,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),464.76,1.385,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),166.99,1.533,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),60,1.697,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),21.558,1.879,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),7.746,2.081,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),2.7832,2.303,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),1,2.55,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 2.55x min 1 s","per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.598964,3.192,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.367856,3.995,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.229271,5,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.0594638,5,min,IEC 60898-1 instantaneous letter definition - lower pickup 5x,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.0154226,5,min,IEC 60898-1 instantaneous letter definition - lower pickup 5x,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.004,5,min,"ASSUMED - 0.004 s min clearing (typical), not standard-defined",FLAGGED - not a standard limit
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.004,10,min,ASSUMED - 0.004 s min clearing,FLAGGED - not a standard limit
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.004,25,min,ASSUMED - 0.004 s min clearing,FLAGGED - not a standard limit
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),10000,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),6000,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),3600,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),2157.9,1.556,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),1293.5,1.67,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),775.35,1.792,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),464.76,1.923,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),278.59,2.063,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),166.99,2.214,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),100.1,2.376,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),60,2.55,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 2.55x max 60 s","per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),27.798,3.588,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),13.476,5.05,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),6.67,7.106,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),3.3348,10,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),1.0361,10,max,IEC 60898-1 instantaneous letter definition - upper pickup 10x; must trip <0.1 s above it (60898-1),"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.321879,10,max,IEC 60898-1 instantaneous letter definition - upper pickup 10x; must trip <0.1 s above it (60898-1),"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.1,10,max,IEC 60898-1 instantaneous letter definition - upper pickup 10x; must trip <0.1 s above it (60898-1),"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.1,13,max,IEC 60898-1 - trip <0.1 s above upper instantaneous limit,"per-unit of breaker In, NOT motor FLA"
+FLA - C Curve,IEC 60898-1,C Curve (5-10x In),0.1,25,max,IEC 60898-1 - trip <0.1 s above upper instantaneous limit,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),10000,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),6000,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),3600,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),1293.5,1.251,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),464.76,1.385,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),166.99,1.533,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),60,1.697,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),21.558,1.879,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),7.746,2.081,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),2.7832,2.303,min,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),1,2.55,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 2.55x min 1 s","per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.362713,4.021,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.140325,6.341,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.0555808,10,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.023119,10,min,IEC 60898-1 instantaneous letter definition - lower pickup 10x,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.00961645,10,min,IEC 60898-1 instantaneous letter definition - lower pickup 10x,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.004,10,min,"ASSUMED - 0.004 s min clearing (typical), not standard-defined",FLAGGED - not a standard limit
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.004,20,min,ASSUMED - 0.004 s min clearing,FLAGGED - not a standard limit
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.004,25,min,ASSUMED - 0.004 s min clearing,FLAGGED - not a standard limit
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),10000,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),6000,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),3600,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),2157.9,1.556,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),1293.5,1.67,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),775.35,1.792,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),464.76,1.923,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),278.59,2.063,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),166.99,2.214,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),100.1,2.376,max,log-log interpolation between anchors,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),60,2.55,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 2.55x max 60 s","per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),19.183,4.267,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),6.603,7.141,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),2.3278,11.95,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.827444,20,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.409096,20,max,IEC 60898-1 instantaneous letter definition - upper pickup 20x; must trip <0.1 s above it (60898-1),"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.202261,20,max,IEC 60898-1 instantaneous letter definition - upper pickup 20x; must trip <0.1 s above it (60898-1),"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.1,20,max,IEC 60898-1 instantaneous letter definition - upper pickup 20x; must trip <0.1 s above it (60898-1),"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.1,25,max,IEC 60898-1 - trip <0.1 s above upper instantaneous limit,"per-unit of breaker In, NOT motor FLA"
+FLA - D Curve,IEC 60898-1,D Curve (10-20x In),0.1,25,max,IEC 60898-1 - trip <0.1 s above upper instantaneous limit,"per-unit of breaker In, NOT motor FLA"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),10000,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),6000,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),3600,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),1293.5,1.251,min,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),464.76,1.385,min,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),166.99,1.533,min,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),60,1.697,min,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),21.558,1.879,min,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),7.746,2.081,min,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),2.7832,2.303,min,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),1,2.55,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 2.55x min 1 s","FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.425389,3.733,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.190636,5.465,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.0873413,8,min,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.0312488,8,min,Manufacturer convention on IEC 60947-2 devices (K/Z not standardized in 60947-2) - lower pickup 8x,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.0111801,8,min,Manufacturer convention on IEC 60947-2 devices (K/Z not standardized in 60947-2) - lower pickup 8x,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.004,8,min,"ASSUMED - 0.004 s min clearing (typical), not standard-defined",FLAGGED - not a standard limit
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.004,14,min,ASSUMED - 0.004 s min clearing,FLAGGED - not a standard limit
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.004,25,min,ASSUMED - 0.004 s min clearing,FLAGGED - not a standard limit
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),10000,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),6000,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),3600,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),2157.9,1.556,max,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),1293.5,1.67,max,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),775.35,1.792,max,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),464.76,1.923,max,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),278.59,2.063,max,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),166.99,2.214,max,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),100.1,2.376,max,log-log interpolation between anchors,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),60,2.55,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 2.55x max 60 s","FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),23.191,3.903,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),9.5144,5.975,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),3.9946,9.146,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),1.6931,14,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.659353,14,max,Manufacturer convention on IEC 60947-2 devices (K/Z not standardized in 60947-2) - upper pickup 14x; must trip <0.1 s above it (60898-1),"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.256779,14,max,Manufacturer convention on IEC 60947-2 devices (K/Z not standardized in 60947-2) - upper pickup 14x; must trip <0.1 s above it (60898-1),"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.1,14,max,Manufacturer convention on IEC 60947-2 devices (K/Z not standardized in 60947-2) - upper pickup 14x; must trip <0.1 s above it (60898-1),"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.1,18.2,max,IEC 60898-1 - trip <0.1 s above upper instantaneous limit,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - K Curve,Mfr conv. / IEC 60947-2,K Curve (8-14x In),0.1,25,max,IEC 60898-1 - trip <0.1 s above upper instantaneous limit,"FLAGGED - K is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),10000,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),6000,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),3600,1.13,min,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.13x no trip for 1 h","FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),1382,1.243,min,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),530.55,1.367,min,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),203.68,1.503,min,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),78.19,1.653,min,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),30.017,1.818,min,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),11.523,2,min,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),0.809848,2,min,Manufacturer convention on IEC 60947-2 devices (K/Z not standardized in 60947-2) - lower pickup 2x,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),0.0569156,2,min,Manufacturer convention on IEC 60947-2 devices (K/Z not standardized in 60947-2) - lower pickup 2x,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),0.004,2,min,"ASSUMED - 0.004 s min clearing (typical), not standard-defined",FLAGGED - not a standard limit
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),0.004,3,min,ASSUMED - 0.004 s min clearing,FLAGGED - not a standard limit
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),0.004,25,min,ASSUMED - 0.004 s min clearing,FLAGGED - not a standard limit
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),10000,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),6000,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),3600,1.45,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 1.45x trip within 1 h","FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),2157.9,1.556,max,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),1293.5,1.67,max,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),775.35,1.792,max,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),464.76,1.923,max,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),278.59,2.063,max,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),166.99,2.214,max,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),100.1,2.376,max,log-log interpolation between anchors,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),60,2.55,max,"IEC 60898-1 (I1=1.13x >=1h no-trip, I2=1.45x <=1h trip, 2.55x: 1-60 s, In<=32A) - 2.55x max 60 s","FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),54.544,2.656,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),49.647,2.766,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),45.241,2.881,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),41.269,3,max,"I^2t-model extrapolation beyond 2.55x (model choice, not standard-defined)",FLAGGED - not a standard limit
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),5.543,3,max,Manufacturer convention on IEC 60947-2 devices (K/Z not standardized in 60947-2) - upper pickup 3x; must trip <0.1 s above it (60898-1),"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),0.744516,3,max,Manufacturer convention on IEC 60947-2 devices (K/Z not standardized in 60947-2) - upper pickup 3x; must trip <0.1 s above it (60898-1),"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),0.1,3,max,Manufacturer convention on IEC 60947-2 devices (K/Z not standardized in 60947-2) - upper pickup 3x; must trip <0.1 s above it (60898-1),"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),0.1,3.9,max,IEC 60898-1 - trip <0.1 s above upper instantaneous limit,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Z Curve,Mfr conv. / IEC 60947-2,Z Curve (2-3x In),0.1,25,max,IEC 60898-1 - trip <0.1 s above upper instantaneous limit,"FLAGGED - Z is a manufacturer designation, not in the standard"
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),10000,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),8485.3,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),7200,1.05,min,IEC 60947-4-1 Table 3 (compensated relay) - 1.05x no trip for 2 h,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),3468.6,1.114,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),1671,1.183,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),804.98,1.255,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),387.8,1.332,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),186.82,1.413,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),90,1.5,min,"ASSUMED - 90 s min at 1.5x, not standard-defined",FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),64.155,1.825,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),45.732,2.22,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),32.599,2.701,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),23.238,3.286,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),16.565,3.998,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),11.808,4.864,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),8.4171,5.918,min,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),6,7.2,min,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - Class 20 min 6 s",
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),5.0846,7.925,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),4.3088,8.722,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),3.6514,9.6,min,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),0.341989,9.6,min,magnetic threshold per user spec 12x +/-20% - min pickup 9.6x,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),0.0320307,9.6,min,magnetic threshold per user spec 12x +/-20% - min pickup 9.6x,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),0.003,9.6,min,ASSUMED - 0.003 s min operate (typical MPCB),FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),0.003,14.4,min,ASSUMED - 0.003 s min operate,FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),0.003,20,min,ASSUMED - 0.003 s min operate,FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),10000,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),8485.3,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),7200,1.2,max,IEC 60947-4-1 Table 3 (compensated relay) - 1.2x trip within 2 h,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),4584.8,1.245,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),2919.5,1.293,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),1859,1.342,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),1183.8,1.392,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),753.8,1.445,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),480,1.5,max,IEC 60947-4-1 Table 3 (compensated relay) - Class 20 trip within 8 min at 1.5x (hot),
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),322.64,1.825,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),216.86,2.22,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),145.77,2.701,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),97.98,3.286,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),65.858,3.998,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),44.267,4.864,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),29.755,5.918,max,log-log interpolation between anchors,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),20,7.2,max,"IEC 60947-4-1 Table 2 (trip class window at 7.2x, cold) - Class 20 max 20 s",
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),14.079,8.562,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),9.9102,10.18,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),6.976,12.11,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),4.9106,14.4,max,power-law extrapolation beyond 7.2x (not standard-defined),FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),0.988046,14.4,max,magnetic threshold per user spec 12x +/-20% - max pickup 14.4x,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),0.198801,14.4,max,magnetic threshold per user spec 12x +/-20% - max pickup 14.4x,
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),0.04,14.4,max,ASSUMED - 0.04 s max clearing (typical MPCB),FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),0.04,17,max,ASSUMED - 0.04 s max clearing,FLAGGED - not an IEC limit
+FLA - Class 20 + 12x Mag,IEC 60947-4-1,Class 20 + 12x Magnetic (MPCB),0.04,20,max,ASSUMED - 0.04 s max clearing,FLAGGED - not an IEC limit

@@ -1,11 +1,47 @@
 class Overload {
     constructor(properties = {}) {
-        this.data = []; // Array of {time, current} objects
+        this.data = []; // Array of {time, current, band} objects
         this.mfg = properties.mfg || '';
         this.mpn = properties.mpn || '';
         this.type = properties.type || '';
         this.voltage = properties.voltage || '';
         this.rating = properties.rating || '';
+        this.annotations = new Set(); // unique source/notes strings from the CSV
+    }
+
+    // Split a CSV line honoring double-quoted fields (which may contain commas)
+    static parseCsvLine(line) {
+        const fields = [];
+        let field = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+            const ch = line[i];
+            if (inQuotes) {
+                if (ch === '"') {
+                    if (line[i + 1] === '"') { field += '"'; i++; }
+                    else inQuotes = false;
+                } else {
+                    field += ch;
+                }
+            } else if (ch === '"') {
+                inQuotes = true;
+            } else if (ch === ',') {
+                fields.push(field);
+                field = '';
+            } else {
+                field += ch;
+            }
+        }
+        fields.push(field);
+        return fields;
+    }
+
+    addAnnotation(text) {
+        if (text) this.annotations.add(text);
+    }
+
+    getAnnotations() {
+        return [...this.annotations];
     }
 
     // Add a new overload data point; band marks a min/max envelope edge ('' = single curve)
@@ -26,10 +62,16 @@ class Overload {
         return [...this.data];
     }
 
-    // Get data sorted by time, optionally filtered to one envelope edge ('min'/'max')
-    getSortedData(band) {
-        const points = band === undefined ? this.data : this.data.filter(p => p.band === band);
-        return [...points].sort((a, b) => a.time - b.time);
+    // Get data sorted by time
+    getSortedData() {
+        return [...this.data].sort((a, b) => a.time - b.time);
+    }
+
+    // Get one envelope edge ('min'/'max') in AUTHORED order — TCC edges can contain
+    // vertical and constant-current segments, so the row order defines the polyline
+    // and re-sorting by time would corrupt it
+    getBandData(band) {
+        return this.data.filter(p => p.band === band);
     }
 
     // Get the maximum current value
@@ -100,7 +142,7 @@ class Overload {
             const csvText = await response.text();
             
             const lines = csvText.split('\n');
-            const headers = lines[0].toLowerCase().split(',');
+            const headers = Overload.parseCsvLine(lines[0].toLowerCase());
             
             // Find column indices
             const timeIndex = headers.findIndex(h => h.includes('time'));
@@ -111,6 +153,8 @@ class Overload {
             const voltageIndex = headers.findIndex(h => h.includes('voltage'));
             const ratingIndex = headers.findIndex(h => h.includes('rating'));
             const bandIndex = headers.findIndex(h => h.includes('band'));
+            const sourceIndex = headers.findIndex(h => h.includes('source'));
+            const notesIndex = headers.findIndex(h => h.includes('note'));
             
             if (timeIndex === -1 || currentIndex === -1) {
                 throw new Error('CSV must contain time and current columns');
@@ -123,7 +167,7 @@ class Overload {
             for (let i = 1; i < lines.length; i++) {
                 const line = lines[i].trim();
                 if (line) {
-                    const values = line.split(',');
+                    const values = Overload.parseCsvLine(line);
                     
                     // Extract properties
                     const properties = {
@@ -148,7 +192,10 @@ class Overload {
                     const band = bandIndex !== -1 ? (values[bandIndex] || '').trim().toLowerCase() : '';
 
                     if (!isNaN(time) && !isNaN(current)) {
-                        overloadGroups.get(key).addDataPoint(time, current, band);
+                        const overload = overloadGroups.get(key);
+                        overload.addDataPoint(time, current, band);
+                        if (sourceIndex !== -1) overload.addAnnotation((values[sourceIndex] || '').trim());
+                        if (notesIndex !== -1) overload.addAnnotation((values[notesIndex] || '').trim());
                     }
                 }
             }
