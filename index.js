@@ -40,8 +40,72 @@ function isFlaReference(overload) {
     return overload.getProperties().type.trim().toLowerCase() === 'fla';
 }
 
-function isNemaCode(overload) {
-    return /code/i.test(overload.getProperties().type);
+// Standard-profile categories: title + a header tooltip explaining the standard,
+// its intention, and how to use it in a coordination study
+const PROFILE_CATEGORIES = {
+    thermal: {
+        title: 'Thermal (IEC 60947-4-1)',
+        tooltip: 'IEC 60947-4-1 governs motor overload relays (and the thermal element of '
+            + 'MPCBs). A trip class is the maximum time to trip at 7.2x the current setting '
+            + 'from cold: Class 10 within 10 s, Class 20 within 20 s, Class 30 within 30 s '
+            + '("E" variants hold a tighter tolerance band). Intention: ride through the '
+            + 'motor start, catch a stalled or overloaded motor. Use: select the class of '
+            + 'your overload device and check that candidate fuses clear faults the relay '
+            + 'cannot, without tripping below the band during start. Per-unit - scales with '
+            + 'Motor FLA. Standard-derived estimate - verify against manufacturer data.'
+    },
+    iec60898: {
+        title: 'Breaker Curves (IEC 60898-1)',
+        tooltip: 'IEC 60898-1 defines MCB (miniature circuit breaker) tripping: a shared '
+            + 'thermal band (hold 1.13x In for 1 h, trip at 1.45x In within 1 h) plus an '
+            + 'instantaneous magnetic band per letter: B = 3-5x, C = 5-10x, D = 10-20x In. '
+            + 'Intention: B for resistive loads, C for typical inductive loads, D for high '
+            + 'inrush. Use: overlay your upstream breaker’s letter to check inrush '
+            + 'ride-through and coordination with the fuse. Per-unit of breaker rating In, '
+            + 'assumed here to equal Motor FLA - scales with the FLA input.'
+    },
+    mfrCurves: {
+        title: 'Breaker Curves (Mfr / IEC 60947-2)',
+        tooltip: 'K (8-14x In) and Z (2-3x In) are manufacturer-convention magnetic curves, '
+            + 'commonly built to IEC 60947-2: K for high-inrush motor and transformer loads, '
+            + 'Z for sensitive electronics needing fast low-multiple tripping. Same thermal '
+            + 'band and usage as the IEC 60898-1 letters. Per-unit of In, assumed here to '
+            + 'equal Motor FLA.'
+    },
+    mpcb: {
+        title: 'MPCB Example (Thermal + Magnetic)',
+        tooltip: 'A complete example MPCB envelope: IEC 60947-4-1 Class 20 thermal band '
+            + 'combined with a 12x (+/-20%) instantaneous magnetic trip. Shows how a trip '
+            + 'class and a magnetic pickup combine in one motor-protection device - use as a '
+            + 'template for your actual MPCB’s settings. Per-unit - scales with Motor FLA.'
+    },
+    nema: {
+        title: 'Locked Rotor (NEMA MG-1)',
+        tooltip: 'NEMA MG-1 code letters (the "Code" on a motor nameplate, A-V) specify '
+            + 'locked-rotor kVA per hp, approximated here as per-unit locked-rotor current '
+            + 'bands (assumes ~1 kVA/hp at full load; true LRA depends on efficiency x power '
+            + 'factor). These are LOAD characteristics, not trip curves: a starting or '
+            + 'stalled motor draws current inside this band, so protection that must ride '
+            + 'through starting cannot trip to its left. Use: pick your motor’s '
+            + 'nameplate code letter.'
+    }
+};
+
+function profileCategory(overload) {
+    const { mfg, mpn } = overload.getProperties();
+    if (/nema/i.test(mfg)) return PROFILE_CATEGORIES.nema;
+    if (/60898/.test(mfg)) return PROFILE_CATEGORIES.iec60898;
+    if (/mfr|60947-2/i.test(mfg)) return PROFILE_CATEGORIES.mfrCurves;
+    if (/magnetic/i.test(mpn)) return PROFILE_CATEGORIES.mpcb;
+    if (/60947-4-1/.test(mfg)) return PROFILE_CATEGORIES.thermal;
+    return { title: 'Other Profiles', tooltip: '' };
+}
+
+// Sidebar rows inside a category drop the redundant standard/suffix noise
+function profileShortLabel(overload) {
+    return overload.getProperties().mpn
+        .replace(/\s*Thermal\s*$/i, '')
+        .replace(/\s*LRA\s*$/i, '');
 }
 
 // Protective devices the engineer chooses between; everything else (SSRs, SCRs,
@@ -154,8 +218,8 @@ const myChart = new Chart(ctx, {
     }
 });
 
-// Build one device row: checkbox + color swatch + label
-function createDeviceRow(overload, checked) {
+// Build one device row: checkbox + color swatch + label (optional display override)
+function createDeviceRow(overload, checked, labelText) {
     const overloadIndex = allOverloads.indexOf(overload);
 
     const div = document.createElement('div');
@@ -176,17 +240,15 @@ function createDeviceRow(overload, checked) {
     const swatch = document.createElement('span');
     swatch.className = 'color-swatch';
     label.appendChild(swatch);
-    label.appendChild(document.createTextNode(overload.getLabel()));
+    label.appendChild(document.createTextNode(labelText || overload.getLabel()));
 
-    // Surface the curve's source/assumption notes as a hover tooltip
+    // Surface the curve's own source/assumption notes as a hover tooltip
     const annotations = overload.getAnnotations();
     if (annotations.length) {
         const info = document.createElement('span');
         info.className = 'note-icon';
         info.textContent = 'ⓘ';
-        info.title = 'Per-unit — scales with Motor FLA. Standard-derived estimate; '
-            + 'verify against manufacturer data before final selection.\n\n• '
-            + annotations.join('\n• ');
+        info.title = '• ' + annotations.join('\n• ');
         label.appendChild(info);
     }
 
@@ -215,8 +277,9 @@ function groupByType(devices) {
     return Object.entries(grouped).map(([type, list]) => [type, list.sort(byRating)]);
 }
 
-// Build a collapsible device group with count badge and all/none controls
-function createDeviceGroup(type, typeOverloads, { checked, expanded }) {
+// Build a collapsible device group with count badge, all/none controls, and
+// optional header tooltip + per-row display labels
+function createDeviceGroup(type, typeOverloads, { checked, expanded, tooltip, rowLabel }) {
     const groupDiv = document.createElement('div');
     groupDiv.className = 'overload-group mb-2';
 
@@ -246,6 +309,15 @@ function createDeviceGroup(type, typeOverloads, { checked, expanded }) {
 
     headerDiv.appendChild(toggle);
 
+    // Category tooltip: what the standard is, its intention, how to use it
+    if (tooltip) {
+        const info = document.createElement('span');
+        info.className = 'note-icon';
+        info.textContent = 'ⓘ';
+        info.title = tooltip;
+        headerDiv.appendChild(info);
+    }
+
     const contentDiv = document.createElement('div');
     contentDiv.className = expanded ? 'group-content ms-3' : 'collapsed group-content ms-3';
 
@@ -272,7 +344,8 @@ function createDeviceGroup(type, typeOverloads, { checked, expanded }) {
         headerDiv.appendChild(btn);
     });
 
-    typeOverloads.forEach(overload => contentDiv.appendChild(createDeviceRow(overload, checked)));
+    typeOverloads.forEach(overload =>
+        contentDiv.appendChild(createDeviceRow(overload, checked, rowLabel ? rowLabel(overload) : undefined)));
 
     groupDiv.appendChild(headerDiv);
     groupDiv.appendChild(contentDiv);
@@ -293,19 +366,25 @@ function populateOverloadList(devices) {
     const protectedDevices = devices.filter(d => !isFlaDevice(d) && !isCandidateDevice(d));
 
     // FLA references are always visible and start checked; per-unit profiles
-    // live in collapsed groups and start unchecked
+    // live in collapsed groups, one per standard, each with a category tooltip
     const references = flaDevices.filter(isFlaReference);
     const profiles = flaDevices.filter(d => !isFlaReference(d));
-    const nemaCodes = profiles.filter(isNemaCode);
-    const tripProfiles = profiles.filter(d => !isNemaCode(d));
 
     references.forEach(d => flaList.appendChild(createDeviceRow(d, true)));
-    if (tripProfiles.length) {
-        flaList.appendChild(createDeviceGroup('Trip Profiles', tripProfiles, { checked: false, expanded: false }));
-    }
-    if (nemaCodes.length) {
-        flaList.appendChild(createDeviceGroup('NEMA LRA Codes', nemaCodes, { checked: false, expanded: false }));
-    }
+
+    const categorized = new Map();
+    profiles.forEach(d => {
+        const category = profileCategory(d);
+        if (!categorized.has(category.title)) categorized.set(category.title, { category, devices: [] });
+        categorized.get(category.title).devices.push(d);
+    });
+    categorized.forEach(({ category, devices: categoryDevices }) =>
+        flaList.appendChild(createDeviceGroup(category.title, categoryDevices, {
+            checked: false,
+            expanded: false,
+            tooltip: category.tooltip,
+            rowLabel: profileShortLabel
+        })));
 
     // Protected components start unchecked and collapsed
     groupByType(protectedDevices).forEach(([type, typeOverloads]) =>
