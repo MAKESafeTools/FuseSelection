@@ -26,7 +26,26 @@ const colorArray = [
 ];
 
 // Store overloads globally
-let allOverloads = []; 
+let allOverloads = [];
+
+// Device roles are declared by the CSV 'type' column
+function isFlaDevice(overload) {
+    return /fla/i.test(overload.getProperties().type);
+}
+
+function isSsrDevice(overload) {
+    return /ssr/i.test(overload.getProperties().type);
+}
+
+// Read and validate the motor FLA input; flags the field and falls back to 1 when invalid
+// so the reference curves never silently disappear
+function getMotorFla() {
+    const input = document.getElementById('fla');
+    const fla = parseFloat(input.value);
+    const valid = isFinite(fla) && fla > 0;
+    input.classList.toggle('is-invalid', !valid);
+    return valid ? fla : 1;
+}
 
 const myChart = new Chart(ctx, {
     type: 'scatter',
@@ -82,7 +101,7 @@ const myChart = new Chart(ctx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Overload Data'
+                text: 'Coordination Chart'
             },
             tooltip: {
                 callbacks: {
@@ -120,97 +139,153 @@ const myChart = new Chart(ctx, {
     }
 });
 
-// Function to populate overload checkboxes grouped by type
+// Build one device row: checkbox + color swatch + label
+function createDeviceRow(overload, checked) {
+    const overloadIndex = allOverloads.indexOf(overload);
+
+    const div = document.createElement('div');
+    div.className = 'form-check';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = `overload-${overloadIndex}`;
+    checkbox.className = 'form-check-input overload-checkbox';
+    checkbox.checked = checked;
+    checkbox.dataset.overloadIndex = overloadIndex;
+    checkbox.addEventListener('change', updateChartDisplay);
+
+    const label = document.createElement('label');
+    label.className = 'form-check-label';
+    label.htmlFor = checkbox.id;
+
+    const swatch = document.createElement('span');
+    swatch.className = 'color-swatch';
+    label.appendChild(swatch);
+    label.appendChild(document.createTextNode(overload.getLabel()));
+
+    div.appendChild(checkbox);
+    div.appendChild(label);
+    return div;
+}
+
+// Sort devices by amp rating so lists read like a catalog (unrated entries last)
+function byRating(a, b) {
+    const ra = parseFloat(a.getProperties().rating);
+    const rb = parseFloat(b.getProperties().rating);
+    return (isNaN(ra) ? Infinity : ra) - (isNaN(rb) ? Infinity : rb);
+}
+
+// Populate the three study sections: FLA references, protected SSRs, candidate groups
 function populateOverloadList(devices) {
+    const flaList = document.getElementById('flaList');
+    const ssrList = document.getElementById('ssrList');
     const overloadList = document.getElementById('overloadList');
-    overloadList.innerHTML = ''; // Clear existing checkboxes
-    
-    // Group devices by type
+    flaList.innerHTML = '';
+    ssrList.innerHTML = '';
+    overloadList.innerHTML = '';
+
+    const flaDevices = devices.filter(isFlaDevice);
+    const ssrDevices = devices.filter(d => !isFlaDevice(d) && isSsrDevice(d));
+    const candidates = devices.filter(d => !isFlaDevice(d) && !isSsrDevice(d));
+
+    // References and the protected device are always visible and start checked
+    flaDevices.forEach(d => flaList.appendChild(createDeviceRow(d, true)));
+    ssrDevices.slice().sort(byRating).forEach(d => ssrList.appendChild(createDeviceRow(d, true)));
+
+    // Group candidates by type
     const groupedDevices = {};
-    devices.forEach(device => {
+    candidates.forEach(device => {
         const type = device.getProperties().type || 'Other';
         if (!groupedDevices[type]) {
-            // if this type doesn't exist yet, intialize a spot for it
             groupedDevices[type] = [];
         }
-        // otherwise just add it to the existing spot
         groupedDevices[type].push(device);
     });
-    
-    // Create groups for each type
-    Object.entries(groupedDevices).forEach(([type, typeOverloads]) => {
 
-        // Create group container
+    // Create a collapsible group for each candidate type
+    Object.entries(groupedDevices).forEach(([type, typeOverloads]) => {
+        typeOverloads.sort(byRating);
+
         const groupDiv = document.createElement('div');
         groupDiv.className = 'overload-group mb-2';
-        groupDiv.id = type + '-group';
-        
-        // Create group header
+
         const headerDiv = document.createElement('div');
         headerDiv.className = 'group-header d-flex align-items-center mb-1';
-        headerDiv.id = type + '-group-header';
-        headerDiv.style.cursor = 'pointer';
-        
-        // Add expand/collapse icon
+
+        // Expand/collapse control is a real button so it works from the keyboard
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'group-toggle d-flex align-items-center flex-grow-1';
+        toggle.setAttribute('aria-expanded', 'false');
+
         const icon = document.createElement('span');
         icon.className = 'me-2';
         icon.innerHTML = '▶';
-        headerDiv.appendChild(icon);
-        
-        // Add group title
+        toggle.appendChild(icon);
+
         const title = document.createElement('span');
         title.className = 'fw-bold';
         title.textContent = type;
-        headerDiv.appendChild(title);
-        
-        // Create group content
+        toggle.appendChild(title);
+
+        const count = document.createElement('span');
+        count.className = 'ms-1 text-muted';
+        count.textContent = `(${typeOverloads.length})`;
+        toggle.appendChild(count);
+
+        headerDiv.appendChild(toggle);
+
         const contentDiv = document.createElement('div');
-        contentDiv.className = 'start-collapsed group-content ms-3';
-        
-        // Add click handler for expand/collapse
-        headerDiv.addEventListener('click', () => {
-            const collapsed = contentDiv.classList.toggle('start-collapsed');
+        contentDiv.className = 'collapsed group-content ms-3';
+
+        toggle.addEventListener('click', () => {
+            const collapsed = contentDiv.classList.toggle('collapsed');
+            toggle.setAttribute('aria-expanded', String(!collapsed));
             icon.innerHTML = collapsed ? '▶' : '▼';
         });
-        
-        // Add overloads to group
-        typeOverloads.forEach((overload, index) => {
-            const div = document.createElement('div');
-            div.className = 'form-check';
-            
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = `overload-${type}-${index}`;
-            checkbox.className = 'form-check-input overload-checkbox';
-            checkbox.checked = false; // Default to unchecked
-            if(type.includes('FLA')) checkbox.checked = true;
-            
-            // Store the actual index in allOverloads array as a data attribute
-            const overloadIndex = allOverloads.indexOf(overload);
-            checkbox.dataset.overloadIndex = overloadIndex;
-            
-            checkbox.addEventListener('change', updateChartDisplay);
-            
-            const label = document.createElement('label');
-            label.className = 'form-check-label';
-            label.htmlFor = `overload-${type}-${index}`;
-            label.textContent = overload.getLabel();
-            
-            div.appendChild(checkbox);
-            div.appendChild(label);
-            contentDiv.appendChild(div);
+
+        // Per-group all/none; selecting all expands the group so the result is visible
+        const setGroup = (checked) => {
+            contentDiv.querySelectorAll('.overload-checkbox').forEach(cb => { cb.checked = checked; });
+            if (checked && contentDiv.classList.contains('collapsed')) {
+                toggle.click();
+            }
+            updateChartDisplay();
+        };
+        ['all', 'none'].forEach(word => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'group-select ms-2';
+            btn.textContent = word;
+            btn.addEventListener('click', () => setGroup(word === 'all'));
+            headerDiv.appendChild(btn);
         });
-        
+
+        typeOverloads.forEach(overload => contentDiv.appendChild(createDeviceRow(overload, false)));
+
         groupDiv.appendChild(headerDiv);
         groupDiv.appendChild(contentDiv);
         overloadList.appendChild(groupDiv);
     });
+
+    paintSwatches();
 }
 
-// Function to select/deselect all overloads
-function selectAllOverloads(checked) {
+// Swatches mirror the chart's color assignment (position among all checkboxes)
+function paintSwatches() {
+    document.querySelectorAll('.overload-checkbox').forEach((checkbox, index) => {
+        const overload = allOverloads[parseInt(checkbox.dataset.overloadIndex)];
+        const swatch = checkbox.parentElement.querySelector('.color-swatch');
+        if (!swatch || !overload) return;
+        swatch.style.backgroundColor = isFlaDevice(overload) ? 'grey' : colorArray[index % colorArray.length];
+    });
+}
+
+// Restore the default study: references + protected device on, candidates cleared
+function resetStudy() {
     document.querySelectorAll('.overload-checkbox').forEach(checkbox => {
-        checkbox.checked = checked;
+        const overload = allOverloads[parseInt(checkbox.dataset.overloadIndex)];
+        checkbox.checked = !!overload && (isFlaDevice(overload) || isSsrDevice(overload));
     });
     updateChartDisplay();
 }
@@ -219,39 +294,34 @@ function selectAllOverloads(checked) {
 function updateChartDisplay() {
     // Clear existing datasets
     myChart.data.datasets = [];
-    
+
+    const fla = getMotorFla();
+    myChart.options.plugins.title.text = `Coordination @ FLA = ${fla} A`;
+
     // Get all checkboxes
     const checkboxes = document.querySelectorAll('.overload-checkbox');
-    
+
     // Add datasets for checked overloads
     checkboxes.forEach((checkbox, index) => {
         if (checkbox.checked) {
             // Use the stored overloadIndex to get the correct overload
             const overloadIndex = parseInt(checkbox.dataset.overloadIndex);
-            
+
             if (allOverloads[overloadIndex]) {
                 const overload = allOverloads[overloadIndex];
-                var data = overload.getSortedData();
+                const data = overload.getSortedData();
                 const properties = overload.getProperties();
-                const label = overload.getLabel();
-                const fla_raw = document.getElementById('fla').value;
-                // var fla_data = data;
-                // if(label.includes('FLA')) {
-                //     const fla_raw = document.getElementById('fla').value;
-                //     fla_data.forEach((dataPoint) => {
-                //         dataPoint.current = dataPoint.current * fla_raw;
-                //     });
-                // }
-                var is_FLA = label.includes("FLA");
+                const is_FLA = isFlaDevice(overload);
+                const color = is_FLA ? 'grey' : colorArray[index % colorArray.length];
                 myChart.data.datasets.push({
                     label: overload.getLabel(),
                     data: data.map(point => ({
                         x: point.time,
-                        y: is_FLA ? point.current * fla_raw: point.current
+                        y: is_FLA ? point.current * fla : point.current
                     })),
                     showLine: true,
-                    borderColor: is_FLA ? 'grey' : colorArray[index % colorArray.length],
-                    backgroundColor: colorArray[index % colorArray.length],
+                    borderColor: color,
+                    backgroundColor: color,
                     pointRadius: is_FLA ? 1 : 3,
                     borderWidth: is_FLA ? 2 : 3,
                     borderDash: properties.type === 'fuse' ? [5, 5] : [], // Add dashed line for fuses
@@ -261,7 +331,7 @@ function updateChartDisplay() {
             }
         }
     });
-    
+
     myChart.update();
     updateAxisRanges();
 }
@@ -310,6 +380,9 @@ function updateAxisRanges() {
 
     myChart.update();
 }
+
+// Rescale the FLA reference curves live as the motor FLA is typed
+document.getElementById('fla').addEventListener('input', updateChartDisplay);
 
 // Add event listeners for axis type checkboxes
 document.getElementById('xAxisLog').addEventListener('change', updateAxisTypes);

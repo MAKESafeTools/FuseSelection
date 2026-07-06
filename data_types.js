@@ -59,9 +59,17 @@ class Overload {
         this.data = [];
     }
 
-    // Get label for chart legend (mfg and mpn only)
+    // Get label for sidebar and chart legend (name plus rating/voltage when present)
     getLabel() {
-        return `${this.mfg} ${this.mpn}`.trim();
+        const name = `${this.mfg} ${this.mpn}`.trim();
+        // Append the unit only when the sheet value is a bare number (e.g. "20" vs "20A")
+        const fmt = (value, unit) => {
+            const v = String(value || '').trim();
+            if (!v) return '';
+            return /^[0-9.]+$/.test(v) ? `${v} ${unit}` : v;
+        };
+        const specs = [fmt(this.rating, 'A'), fmt(this.voltage, 'V')].filter(Boolean).join(' / ');
+        return specs ? `${name} — ${specs}` : name;
     }
 
     // Get all properties
