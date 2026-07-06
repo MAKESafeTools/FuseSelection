@@ -307,9 +307,9 @@ function populateOverloadList(devices) {
         flaList.appendChild(createDeviceGroup('NEMA LRA Codes', nemaCodes, { checked: false, expanded: false }));
     }
 
-    // Protected components start unchecked but visible/expanded — one click away
+    // Protected components start unchecked and collapsed
     groupByType(protectedDevices).forEach(([type, typeOverloads]) =>
-        protectedList.appendChild(createDeviceGroup(type, typeOverloads, { checked: false, expanded: true })));
+        protectedList.appendChild(createDeviceGroup(type, typeOverloads, { checked: false, expanded: false })));
 
     // Candidates start unchecked and collapsed
     groupByType(candidates).forEach(([type, typeOverloads]) =>
