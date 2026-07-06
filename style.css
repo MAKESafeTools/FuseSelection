@@ -11,6 +11,13 @@
     padding-left: 8px;
 }
 
+/* Nested groups (e.g. categories inside Standard Profiles) get a shallower
+   indent so rows don't run out of room in the narrow sidebar */
+.group-content .group-content {
+    margin-left: .5rem !important;
+    padding-left: 4px;
+}
+
 .overload-group {
     border-bottom: 1px solid #dee2e6;
     padding-bottom: 8px;

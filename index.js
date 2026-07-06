@@ -277,11 +277,11 @@ function groupByType(devices) {
     return Object.entries(grouped).map(([type, list]) => [type, list.sort(byRating)]);
 }
 
-// Build a collapsible device group with count badge, all/none controls, and
-// optional header tooltip + per-row display labels
-function createDeviceGroup(type, typeOverloads, { checked, expanded, tooltip, rowLabel }) {
-    const groupDiv = document.createElement('div');
-    groupDiv.className = 'overload-group mb-2';
+// Build the shared collapsible shell: header (keyboard toggle button, ▶/▼ icon,
+// count badge, optional ⓘ tooltip) plus a content container
+function createCollapsibleShell(titleText, { expanded, tooltip, count }) {
+    const root = document.createElement('div');
+    root.className = 'overload-group mb-2';
 
     const headerDiv = document.createElement('div');
     headerDiv.className = 'group-header d-flex align-items-center mb-1';
@@ -299,17 +299,19 @@ function createDeviceGroup(type, typeOverloads, { checked, expanded, tooltip, ro
 
     const title = document.createElement('span');
     title.className = 'fw-bold';
-    title.textContent = type;
+    title.textContent = titleText;
     toggle.appendChild(title);
 
-    const count = document.createElement('span');
-    count.className = 'ms-1 text-muted';
-    count.textContent = `(${typeOverloads.length})`;
-    toggle.appendChild(count);
+    if (count !== undefined) {
+        const badge = document.createElement('span');
+        badge.className = 'ms-1 text-muted';
+        badge.textContent = `(${count})`;
+        toggle.appendChild(badge);
+    }
 
     headerDiv.appendChild(toggle);
 
-    // Category tooltip: what the standard is, its intention, how to use it
+    // Header tooltip: what this group is, its intention, how to use it
     if (tooltip) {
         const info = document.createElement('span');
         info.className = 'note-icon';
@@ -318,20 +320,30 @@ function createDeviceGroup(type, typeOverloads, { checked, expanded, tooltip, ro
         headerDiv.appendChild(info);
     }
 
-    const contentDiv = document.createElement('div');
-    contentDiv.className = expanded ? 'group-content ms-3' : 'collapsed group-content ms-3';
+    const content = document.createElement('div');
+    content.className = expanded ? 'group-content ms-3' : 'collapsed group-content ms-3';
 
     toggle.addEventListener('click', () => {
-        const collapsed = contentDiv.classList.toggle('collapsed');
+        const collapsed = content.classList.toggle('collapsed');
         toggle.setAttribute('aria-expanded', String(!collapsed));
         icon.innerHTML = collapsed ? '▶' : '▼';
     });
 
+    root.appendChild(headerDiv);
+    root.appendChild(content);
+    return { root, content, headerDiv, toggle };
+}
+
+// Build a collapsible device group with all/none controls and optional
+// header tooltip + per-row display labels
+function createDeviceGroup(type, typeOverloads, { checked, expanded, tooltip, rowLabel }) {
+    const shell = createCollapsibleShell(type, { expanded, tooltip, count: typeOverloads.length });
+
     // Per-group all/none; selecting all expands the group so the result is visible
     const setGroup = (groupChecked) => {
-        contentDiv.querySelectorAll('.overload-checkbox').forEach(cb => { cb.checked = groupChecked; });
-        if (groupChecked && contentDiv.classList.contains('collapsed')) {
-            toggle.click();
+        shell.content.querySelectorAll('.overload-checkbox').forEach(cb => { cb.checked = groupChecked; });
+        if (groupChecked && shell.content.classList.contains('collapsed')) {
+            shell.toggle.click();
         }
         updateChartDisplay();
     };
@@ -341,15 +353,13 @@ function createDeviceGroup(type, typeOverloads, { checked, expanded, tooltip, ro
         btn.className = 'group-select ms-2';
         btn.textContent = word;
         btn.addEventListener('click', () => setGroup(word === 'all'));
-        headerDiv.appendChild(btn);
+        shell.headerDiv.appendChild(btn);
     });
 
     typeOverloads.forEach(overload =>
-        contentDiv.appendChild(createDeviceRow(overload, checked, rowLabel ? rowLabel(overload) : undefined)));
+        shell.content.appendChild(createDeviceRow(overload, checked, rowLabel ? rowLabel(overload) : undefined)));
 
-    groupDiv.appendChild(headerDiv);
-    groupDiv.appendChild(contentDiv);
-    return groupDiv;
+    return shell.root;
 }
 
 // Populate the three study sections: FLA references, protected components, candidate groups
@@ -378,13 +388,25 @@ function populateOverloadList(devices) {
         if (!categorized.has(category.title)) categorized.set(category.title, { category, devices: [] });
         categorized.get(category.title).devices.push(d);
     });
-    categorized.forEach(({ category, devices: categoryDevices }) =>
-        flaList.appendChild(createDeviceGroup(category.title, categoryDevices, {
-            checked: false,
+    if (profiles.length) {
+        // All standard categories nest under one collapsed parent group
+        const standardShell = createCollapsibleShell('Standard Profiles', {
             expanded: false,
-            tooltip: category.tooltip,
-            rowLabel: profileShortLabel
-        })));
+            count: profiles.length,
+            tooltip: 'Standards-derived per-unit reference envelopes, organized by governing '
+                + 'standard. All scale with the Motor FLA input. Estimates anchored to each '
+                + 'standard’s defined limits — verify against manufacturer data before final '
+                + 'selection.'
+        });
+        categorized.forEach(({ category, devices: categoryDevices }) =>
+            standardShell.content.appendChild(createDeviceGroup(category.title, categoryDevices, {
+                checked: false,
+                expanded: false,
+                tooltip: category.tooltip,
+                rowLabel: profileShortLabel
+            })));
+        flaList.appendChild(standardShell.root);
+    }
 
     // Protected components start unchecked and collapsed
     groupByType(protectedDevices).forEach(([type, typeOverloads]) =>
