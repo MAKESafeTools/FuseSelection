@@ -92,7 +92,8 @@ class Overload {
     // Load data from URL and create multiple Overload objects based on unique properties
     static async loadFromUrl(url) {
         try {
-            const response = await fetch(url);
+            // no-store: always fetch fresh sheet data instead of a browser-cached copy
+            const response = await fetch(url, { cache: 'no-store' });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
