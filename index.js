@@ -169,8 +169,8 @@ function populateOverloadList(devices) {
         
         // Add click handler for expand/collapse
         headerDiv.addEventListener('click', () => {
-            contentDiv.style.display = contentDiv.style.display === 'none' ? 'block' : 'none';
-            icon.innerHTML = contentDiv.style.display === 'none' ? '▶' : '▼';
+            const collapsed = contentDiv.classList.toggle('start-collapsed');
+            icon.innerHTML = collapsed ? '▶' : '▼';
         });
         
         // Add overloads to group
