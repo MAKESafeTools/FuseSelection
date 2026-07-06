@@ -134,7 +134,9 @@ const myChart = new Chart(ctx, {
                 labels: {
                     boxWidth: 20,
                     padding: 10,
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    // Banded devices push two datasets; show one legend entry
+                    filter: (item, data) => !data.datasets[item.datasetIndex].skipLegend
                 }
             }
         }
@@ -270,10 +272,9 @@ function populateOverloadList(devices) {
     // FLA references are always visible and start checked
     flaDevices.forEach(d => flaList.appendChild(createDeviceRow(d, true)));
 
-    // Protected components start checked and expanded — every candidate curve
-    // must stay below these withstand curves
+    // Protected components start unchecked but visible/expanded — one click away
     groupByType(protectedDevices).forEach(([type, typeOverloads]) =>
-        protectedList.appendChild(createDeviceGroup(type, typeOverloads, { checked: true, expanded: true })));
+        protectedList.appendChild(createDeviceGroup(type, typeOverloads, { checked: false, expanded: true })));
 
     // Candidates start unchecked and collapsed
     groupByType(candidates).forEach(([type, typeOverloads]) =>
@@ -292,11 +293,11 @@ function paintSwatches() {
     });
 }
 
-// Restore the default study: references + protected devices on, candidates cleared
+// Restore the default study: FLA references on, everything else cleared
 function resetStudy() {
     document.querySelectorAll('.overload-checkbox').forEach(checkbox => {
         const overload = allOverloads[parseInt(checkbox.dataset.overloadIndex)];
-        checkbox.checked = !!overload && !isCandidateDevice(overload);
+        checkbox.checked = !!overload && isFlaDevice(overload);
     });
     updateChartDisplay();
 }
@@ -323,14 +324,13 @@ function updateChartDisplay() {
 
             if (allOverloads[overloadIndex]) {
                 const overload = allOverloads[overloadIndex];
-                const data = overload.getSortedData();
                 const properties = overload.getProperties();
                 const is_FLA = isFlaDevice(overload);
                 const color = is_FLA ? 'grey' : colorArray[index % colorArray.length];
-                if (is_FLA) flaDatasetIndices.push(myChart.data.datasets.length);
-                myChart.data.datasets.push({
+
+                const makeDataset = (points, overrides) => Object.assign({
                     label: overload.getLabel(),
-                    data: data.map(point => ({
+                    data: points.map(point => ({
                         x: point.time,
                         y: is_FLA ? point.current * fla : point.current
                     })),
@@ -339,10 +339,25 @@ function updateChartDisplay() {
                     backgroundColor: color,
                     pointRadius: is_FLA ? 1 : 3,
                     borderWidth: is_FLA ? 2 : 3,
-                    borderDash: properties.type === 'fuse' ? [5, 5] : [], // Add dashed line for fuses
+                    borderDash: /fuse/i.test(properties.type) ? [5, 5] : [], // Add dashed line for fuses
                     fill: false
+                }, overrides);
 
-                });
+                if (overload.hasBand()) {
+                    // One filled envelope per banded device: min edge (hidden from
+                    // legend), max edge fills down to it
+                    const minIndex = myChart.data.datasets.length;
+                    myChart.data.datasets.push(makeDataset(overload.getSortedData('min'), {
+                        skipLegend: true
+                    }));
+                    myChart.data.datasets.push(makeDataset(overload.getSortedData('max'), {
+                        fill: minIndex,
+                        backgroundColor: is_FLA ? 'rgba(128, 128, 128, 0.15)' : color.replace('0.6', '0.15')
+                    }));
+                } else {
+                    if (is_FLA) flaDatasetIndices.push(myChart.data.datasets.length);
+                    myChart.data.datasets.push(makeDataset(overload.getSortedData()));
+                }
             }
         }
     });

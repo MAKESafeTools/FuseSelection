@@ -8,12 +8,17 @@ class Overload {
         this.rating = properties.rating || '';
     }
 
-    // Add a new overload data point
-    addDataPoint(time, current) {
+    // Add a new overload data point; band marks a min/max envelope edge ('' = single curve)
+    addDataPoint(time, current, band = '') {
         if (time === undefined || current === undefined) {
             throw new Error('Both time and current must be provided');
         }
-        this.data.push({ time, current });
+        this.data.push({ time, current, band });
+    }
+
+    // True when the device carries a min/max envelope (both edges present)
+    hasBand() {
+        return this.data.some(p => p.band === 'min') && this.data.some(p => p.band === 'max');
     }
 
     // Get all overload data
@@ -21,9 +26,10 @@ class Overload {
         return [...this.data];
     }
 
-    // Get data sorted by time
-    getSortedData() {
-        return [...this.data].sort((a, b) => a.time - b.time);
+    // Get data sorted by time, optionally filtered to one envelope edge ('min'/'max')
+    getSortedData(band) {
+        const points = band === undefined ? this.data : this.data.filter(p => p.band === band);
+        return [...points].sort((a, b) => a.time - b.time);
     }
 
     // Get the maximum current value
@@ -103,6 +109,7 @@ class Overload {
             const typeIndex = headers.findIndex(h => h.includes('type'));
             const voltageIndex = headers.findIndex(h => h.includes('voltage'));
             const ratingIndex = headers.findIndex(h => h.includes('rating'));
+            const bandIndex = headers.findIndex(h => h.includes('band'));
             
             if (timeIndex === -1 || currentIndex === -1) {
                 throw new Error('CSV must contain time and current columns');
@@ -137,9 +144,10 @@ class Overload {
                     // Add data point to appropriate Overload instance
                     const time = parseFloat(values[timeIndex]);
                     const current = parseFloat(values[currentIndex]);
-                    
+                    const band = bandIndex !== -1 ? (values[bandIndex] || '').trim().toLowerCase() : '';
+
                     if (!isNaN(time) && !isNaN(current)) {
-                        overloadGroups.get(key).addDataPoint(time, current);
+                        overloadGroups.get(key).addDataPoint(time, current, band);
                     }
                 }
             }
